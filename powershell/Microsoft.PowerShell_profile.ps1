@@ -1,8 +1,5 @@
 #make pwsh prompt really nice
-oh-my-posh init pwsh --config 'C:\Users\ecwt\Documents\PowerShell\takuyaGruv.omp.json' | Invoke-Expression
-
-#username
-$env:USERNAME = "jyynso"
+oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.omp.json" | Invoke-Expression
 #Aliases
 Set-Alias ff fastfetch.exe
 Set-Alias vim nvim
