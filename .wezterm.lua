@@ -24,7 +24,7 @@ config.window_padding = {
     bottom = 30,
 }
 
-onfig.keys = {
+config.keys = {
     {
         key = 'f',
         mods = 'CTRL|SHIFT',
