@@ -24,12 +24,18 @@ config.window_padding = {
     bottom = 30,
 }
 
-config.keys = {
+onfig.keys = {
     {
         key = 'f',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SpawnCommandInNewTab {
-            args = { 'C:\\WINDOWS\\system32\\wsl.exe', '--distribution-id', '{5d4390f2-9c67-433b-9f01-b0e6fc2041bd}', '--cd', '~' },
+            args = { 
+                'wsl.exe',
+                '-d',
+                'FedoraLinux-44',
+                '--cd',
+                '~'
+            },
         },
     },
 }
