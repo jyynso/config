@@ -8,7 +8,7 @@ config.color_scheme = 'GruvboxDark'
 config.font_size = 11
 config.hide_tab_bar_if_only_one_tab = false
 config.enable_tab_bar = true
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.default_cursor_style = 'BlinkingBlock'
 config.cursor_blink_rate = 600
@@ -20,16 +20,24 @@ config.window_background_opacity = 0.80
 config.initial_cols = initial_cols
 config.initial_rows = initial_rows
 
+config.colors = {
+  tab_bar = {
+    active_tab = {
+      bg_color = "#b8bb26",
+      fg_color = "#282828",
+    },
+  },
+}
 config.window_padding = {
     left = 30,
     right = 30,
     top = 30,
-    bottom = 30,
+    bottom = 10,
 }
 
 config.window_frame = {
     font = wezterm.font({ family = 'BlexMono Nerd Font', weight = 'Bold' }),
-    font_size = 11,
+    font_size = 9,
 }
 
 -- default shell 
@@ -125,7 +133,7 @@ end)
 
 -- powerline status bar from @alexpls
 wezterm.on('update-status', function(window)
-  local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+  local LEFT_ARROW = utf8.char(0xe0b2)
   local segs = {
     { text = wezterm.strftime('%H:%M'), color = "#fabd2f" }, 
     { text = wezterm.hostname(), color = "#83a598" }, 
@@ -138,7 +146,7 @@ wezterm.on('update-status', function(window)
 
     table.insert(elements, { Foreground = { Color = bg } })
     table.insert(elements, { Background = { Color = prev_bg } })
-    table.insert(elements, { Text = SOLID_LEFT_ARROW })
+    table.insert(elements, { Text = LEFT_ARROW })
 
     table.insert(elements, { Background = { Color = bg } })
     table.insert(elements, { Foreground = { Color = "#282828" } })
