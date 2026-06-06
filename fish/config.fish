@@ -6,7 +6,6 @@ alias vim nvim
 alias g git
 alias lg lazygit
 alias ff fastfetch
-alias gem gemini
 alias ll 'eza -l --icons'
 alias la 'eza -la --icons'
 
