@@ -4,7 +4,6 @@ oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.
 Set-Alias ff fastfetch.exe
 Set-Alias vim nvim
 Set-Alias g git
-Set-Alias adb .\adb
 Set-Alias lg lazygit
 
 #functionscause pwsh is a bitch
