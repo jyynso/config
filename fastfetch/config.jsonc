@@ -34,7 +34,7 @@
         { "type": "gpu",      "key": "gpu", "format": "{name}" },
         { "type": "memory",   "key": "ram" },
         { "type": "disk",     "key": "disk" },
-        { "type": "uptime",   "key": "up" },
+        { "type": "uptime",   "key": "uptime" },
         "break",
         {
             "type": "colors",

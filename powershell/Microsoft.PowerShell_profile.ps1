@@ -1,26 +1,30 @@
-#make pwsh prompt really nice
 oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.omp.json" | Invoke-Expression
+
 #Aliases
 Set-Alias ff fastfetch.exe
 Set-Alias vim nvim
 Set-Alias g git
 Set-Alias adb .\adb
-Set-Alias komo komorebicStart
-Set-Alias komos komorebicStop
-Set-Alias komor komorebicRestart
 Set-Alias lg lazygit
 
-#Functions cause pwsh is a bitch
+#functionscause pwsh is a bitch
+function ll {
+    eza -l --icons $args
+}
 
-function komorebicStart {
+function la {
+    eza -la --icons $args
+}
+
+function komo {
 	komorebic start --whkd 
 }
 
-function komorebicStop {
+function komos {
 	komorebic stop --whkd
 }
 
-function komorebicRestart {
+function komor {
 	komorebic stop; komorebic start --whkd
 }
 

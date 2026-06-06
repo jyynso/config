@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-local initial_cols = 78
-local initial_rows = 19
+local initial_cols = 85
+local initial_rows = 22
 
 -- appearance
 config.color_scheme = 'GruvboxDark' 
@@ -61,36 +61,36 @@ config.keys = {
 
     {
         key = 'v',
-        mods = 'CTRL|SHIFT',
+        mods = 'ALT|SHIFT',
         action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
     },
 
     {
         key = 'h',
-        mods = 'CTRL|SHIFT',
+        mods = 'ALT|SHIFT',
         action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
     },
 
     {
-        key = 'LeftArrow',
+        key = 'h',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Left"
     },
 
     {
-        key = 'RightArrow',
+        key = 'l',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Right"
     },
 
      {
-        key = 'UpArrow',
+        key = 'k',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Up"
     },
 
     {
-        key = 'DownArrow',
+        key = 'j',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Down"
     },
@@ -101,20 +101,6 @@ config.keys = {
         action = wezterm.action.CloseCurrentPane { confirm = false },
     }
 }
-
-
--- shows pwsh on the tab instead of full path
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-    local title = tab.active_pane.title
-
-    if title == 'pwsh.exe' then
-        title = 'pwsh'
-    end
-
-    return {
-        { Text = ' ' .. title .. ' ' },
-    }
-end)
 
 -- center window on launch only works for 125% scale :(
 wezterm.on('gui-startup', function(cmd)
