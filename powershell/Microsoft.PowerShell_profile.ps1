@@ -27,7 +27,3 @@ function komor {
 	komorebic stop; komorebic start --whkd
 }
 
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
