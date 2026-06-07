@@ -2,9 +2,9 @@ oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.
 
 #Aliases
 Set-Alias ff fastfetch.exe
-Set-Alias vim nvim
 Set-Alias g git
 Set-Alias lg lazygit
+Set-Alias leg Legendary
 
 #functionscause pwsh is a bitch
 function ll {

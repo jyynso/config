@@ -102,21 +102,6 @@ config.keys = {
     }
 }
 
--- center window on launch only works for 125% scale :(
-wezterm.on('gui-startup', function(cmd)
-    local screen = wezterm.gui.screens().main
-    cmd = cmd or {}
-    local estimated_width = 960
-    local estimated_height = 624
-
-    cmd.position = {
-        x = math.floor((screen.width - estimated_width) / 2),
-        y = math.floor((screen.height - estimated_height) / 2),
-    }
-
-    wezterm.mux.spawn_window(cmd)
-end)
-
 -- powerline status bar from @alexpls
 wezterm.on('update-status', function(window)
   local LEFT_ARROW = utf8.char(0xe0b2)
