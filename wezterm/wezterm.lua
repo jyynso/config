@@ -1,21 +1,16 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-local initial_cols = 85
-local initial_rows = 22
+local initial_cols = 100
+local initial_rows = 25
 
 -- appearance
 config.color_scheme = 'GruvboxDark' 
 config.font_size = 11
-config.hide_tab_bar_if_only_one_tab = false
-config.enable_tab_bar = true
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
-config.default_cursor_style = 'BlinkingBlock'
-config.cursor_blink_rate = 600
 config.window_decorations = "RESIZE"
 config.font = wezterm.font({ family = "BlexMono Nerd Font" })
 config.front_end = "WebGpu"
-config.animation_fps = 60
 config.window_background_opacity = 0.80
 config.initial_cols = initial_cols
 config.initial_rows = initial_rows
@@ -40,23 +35,26 @@ config.window_frame = {
     font_size = 9,
 }
 
--- default shell 
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
+config.default_domain = 'local'
+config.wsl_domains = wezterm.default_wsl_domains()
 
 -- keybinds
 config.keys = {
     {
         key = 'f',
         mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnCommandInNewTab {
-            args = { 
-                'wsl.exe',
-                '-d',
-                'FedoraLinux-44',
-                '--cd',
-                '~'
-            },
+        action = wezterm.action.SpawnTab {
+            DomainName = 'WSL:FedoraLinux-44'
         },
+    },
+   
+    {
+	key = 't',
+	mods = 'CTRL|SHIFT',
+	action = wezterm.action.SpawnTab {
+	   DomainName = 'local'
+	},
     },
 
     {
