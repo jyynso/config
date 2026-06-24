@@ -3,6 +3,8 @@ local config = wezterm.config_builder()
 local initial_cols = 100
 local initial_rows = 25
 
+config.keys = require("keymaps")
+
 -- appearance
 config.color_scheme = 'GruvboxDark' 
 config.font_size = 11
@@ -38,67 +40,6 @@ config.window_frame = {
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.default_domain = 'local'
 config.wsl_domains = wezterm.default_wsl_domains()
-
--- keybinds
-config.keys = {
-    {
-        key = 'f',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnTab {
-            DomainName = 'WSL:FedoraLinux-44'
-        },
-    },
-   
-    {
-	key = 't',
-	mods = 'CTRL|SHIFT',
-	action = wezterm.action.SpawnTab {
-	   DomainName = 'local'
-	},
-    },
-
-    {
-        key = 'v',
-        mods = 'ALT|SHIFT',
-        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
-    },
-
-    {
-        key = 'h',
-        mods = 'ALT|SHIFT',
-        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
-    },
-
-    {
-        key = 'h',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Left"
-    },
-
-    {
-        key = 'l',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Right"
-    },
-
-     {
-        key = 'k',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Up"
-    },
-
-    {
-        key = 'j',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Down"
-    },
-
-    {
-        key = 'q',
-        mods = 'ALT',
-        action = wezterm.action.CloseCurrentPane { confirm = false },
-    }
-}
 
 -- powerline status bar from @alexpls
 wezterm.on('update-status', function(window)
