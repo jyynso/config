@@ -1,7 +1,5 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-local initial_cols = 100
-local initial_rows = 25
 
 config.keys = require("keymaps")
 
@@ -14,8 +12,8 @@ config.window_decorations = "RESIZE"
 config.font = wezterm.font({ family = "BlexMono Nerd Font" })
 config.front_end = "WebGpu"
 config.window_background_opacity = 0.80
-config.initial_cols = initial_cols
-config.initial_rows = initial_rows
+config.initial_cols = 100
+config.initial_rows = 25
 
 config.colors = {
   tab_bar = {
