@@ -1,12 +1,11 @@
 oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.omp.json" | Invoke-Expression
 
-#Aliases
+Set-Alias nvim nvim
 Set-Alias ff fastfetch.exe
 Set-Alias g git
 Set-Alias lg lazygit
 Set-Alias leg Legendary
 
-#functionscause pwsh is a bitch
 function ll {
     eza -l --icons $args
 }
