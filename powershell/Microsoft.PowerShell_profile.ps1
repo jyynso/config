@@ -1,6 +1,6 @@
 oh-my-posh init pwsh --config "$env:USERPROFILE\Documents\PowerShell\takuyaGruv.omp.json" | Invoke-Expression
 
-Set-Alias nvim nvim
+Set-Alias vim nvim
 Set-Alias ff fastfetch.exe
 Set-Alias g git
 Set-Alias lg lazygit
