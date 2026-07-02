@@ -19,8 +19,19 @@
         "background": "#458588"
       },
       {
+        "type": "root",
+        "style": "diamond",
+     	"trailing_diamond": "\ue0b0",
+	"background": "#83a598",
+	"foreground": "#FFFB30",
+        "properties": {
+          "root_icon": "\uf292"
+       }
+      },
+      {
         "type": "git",
-        "style": "powerline",
+        "style": "diamond",
+     	"trailing_diamond": "\ue0b0",
         "properties": {
         "branch_icon": "\ue725 ",
         "cache_duration": "none",
