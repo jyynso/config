@@ -43,7 +43,6 @@ config.wsl_domains = wezterm.default_wsl_domains()
 wezterm.on('update-status', function(window)
   local LEFT_ARROW = utf8.char(0xe0b2)
   local segs = {
-  --  { text = wezterm.strftime('%H:%M'), color = "#fabd2f" }, 
     { text = wezterm.hostname(), color = "#83a598" }, 
   }
   
@@ -65,5 +64,7 @@ wezterm.on('update-status', function(window)
 
   window:set_right_status(wezterm.format(elements))
 end)
+
+
 
 return config
