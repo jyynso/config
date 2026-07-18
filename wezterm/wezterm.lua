@@ -5,7 +5,7 @@ config.keys = require("keymaps")
 
 -- appearance
 config.color_scheme = 'GruvboxDark' 
-config.font_size = 11
+config.font_size = 12
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
@@ -43,7 +43,7 @@ config.wsl_domains = wezterm.default_wsl_domains()
 wezterm.on('update-status', function(window)
   local LEFT_ARROW = utf8.char(0xe0b2)
   local segs = {
-    { text = wezterm.strftime('%H:%M'), color = "#fabd2f" }, 
+  --  { text = wezterm.strftime('%H:%M'), color = "#fabd2f" }, 
     { text = wezterm.hostname(), color = "#83a598" }, 
   }
   
