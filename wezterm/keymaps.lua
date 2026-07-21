@@ -19,7 +19,7 @@ local keys = {
 
     -- splits
     {
-        key = 'v',
+        key = 'h',
         mods = 'ALT|SHIFT',
         action = wezterm.action.SplitVertical {
             domain = "CurrentPaneDomain"
@@ -27,7 +27,7 @@ local keys = {
     },
 
     {
-        key = 'h',
+        key = 'v',
         mods = 'ALT|SHIFT',
         action = wezterm.action.SplitHorizontal {
             domain = "CurrentPaneDomain"
