@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local config_leader= {
+local config_leader = {
     key = "a",
     mods = "ALT",
     timeout_milliseconds = 1000,
@@ -14,7 +14,6 @@ local keys = {
             DomainName = 'WSL:FedoraLinux-44'
         },
     },
-
     {
         key = 't',
         mods = 'CTRL|SHIFT',
@@ -25,16 +24,15 @@ local keys = {
 
     -- splits
     {
-        key = 'h',
-        mods = 'ALT|SHIFT',
+        key = 'v',
+        mods = 'LEADER',
         action = wezterm.action.SplitVertical {
             domain = "CurrentPaneDomain"
         },
     },
-
     {
-        key = 'v',
-        mods = 'ALT|SHIFT',
+        key = 'h',
+        mods = 'LEADER',
         action = wezterm.action.SplitHorizontal {
             domain = "CurrentPaneDomain"
         },
@@ -46,23 +44,49 @@ local keys = {
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Left",
     },
-
     {
         key = 'j',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Down",
     },
-
     {
         key = 'k',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Up",
     },
-
     {
         key = 'l',
         mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection "Right",
+    },
+
+    -- resize pane
+    {
+	key = 'h',
+	mods = 'LEADER|SHIFT',
+	action = wezterm.action.AdjustPaneSize { "Left", 5 },
+    },
+    {
+	key = 'j',
+	mods = 'LEADER|SHIFT',
+	action = wezterm.action.AdjustPaneSize { "Down", 5 },
+    },
+    {
+	key = 'k',
+	mods = 'LEADER|SHIFT',
+	action = wezterm.action.AdjustPaneSize { "Up", 5 },
+    },
+    {
+	key = 'l',
+	mods = 'LEADER|SHIFT',
+	action = wezterm.action.AdjustPaneSize { "Right", 5 },
+    },
+
+    -- zoom
+    {
+	key = 'z',
+	mods = 'LEADER',
+	action = wezterm.action.TogglePaneZoomState,
     },
 
     -- close
@@ -75,7 +99,7 @@ local keys = {
     },
 }
 
--- Alt+1 through Alt+9 switch tabs
+-- switch tabs
 for i = 1, 9 do
     table.insert(keys, {
         key = tostring(i),
@@ -84,4 +108,4 @@ for i = 1, 9 do
     })
 end
 
-return keys
+return { keys = keys, leader = config_leader }

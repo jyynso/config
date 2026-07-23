@@ -1,7 +1,9 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+local keymaps  = require("keymaps")
 
-config.keys = require("keymaps")
+config.keys = keymaps.keys
+config.leader = keymaps.leader
 
 config.color_scheme = 'GruvboxDark' 
 config.font_size = 12
