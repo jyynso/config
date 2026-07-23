@@ -3,17 +3,16 @@ local config = wezterm.config_builder()
 
 config.keys = require("keymaps")
 
--- appearance
 config.color_scheme = 'GruvboxDark' 
 config.font_size = 12
+config.initial_cols = 100
+config.initial_rows = 25
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 config.font = wezterm.font({ family = "BlexMono Nerd Font" })
 config.front_end = "WebGpu"
-config.window_background_opacity = 0.80
-config.initial_cols = 100
-config.initial_rows = 25
+config.window_background_opacity = 0.85
 
 config.colors = {
   tab_bar = {
@@ -39,32 +38,19 @@ config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.default_domain = 'local'
 config.wsl_domains = wezterm.default_wsl_domains()
 
--- powerline status bar from @alexpls
+-- powerline status bar, referenced from @alexpls
 wezterm.on('update-status', function(window)
   local LEFT_ARROW = utf8.char(0xe0b2)
-  local segs = {
-    { text = wezterm.hostname(), color = "#83a598" }, 
-  }
-  
-  local elements = {}
-  local prev_bg = "none"
-  for i, seg in ipairs(segs) do
-    local bg = seg.color
+  window:set_right_status(wezterm.format({
+    { Foreground = { Color = "#83a598" } },
+    { Background = { Color = "none" } },
+    { Text = LEFT_ARROW },
 
-    table.insert(elements, { Foreground = { Color = bg } })
-    table.insert(elements, { Background = { Color = prev_bg } })
-    table.insert(elements, { Text = LEFT_ARROW })
-
-    table.insert(elements, { Background = { Color = bg } })
-    table.insert(elements, { Foreground = { Color = "#282828" } })
-    table.insert(elements, { Text = " " .. seg.text .. " " })
-
-    prev_bg = bg
-  end
-
-  window:set_right_status(wezterm.format(elements))
+    { Background = { Color = "#83a598" } },
+    { Foreground = { Color = "#282828" } },
+    { Text = " " .. wezterm.hostname() .. " " },
+  }))
 end)
-
 
 
 return config

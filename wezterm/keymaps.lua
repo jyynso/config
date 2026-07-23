@@ -1,5 +1,11 @@
 local wezterm = require("wezterm")
 
+local config_leader= {
+    key = "a",
+    mods = "ALT",
+    timeout_milliseconds = 1000,
+}
+
 local keys = {
     {
         key = 'f',
