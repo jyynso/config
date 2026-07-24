@@ -82,13 +82,6 @@ local keys = {
 	action = wezterm.action.AdjustPaneSize { "Right", 5 },
     },
 
-    -- zoom
-    {
-	key = 'z',
-	mods = 'LEADER',
-	action = wezterm.action.TogglePaneZoomState,
-    },
-
     -- close
     {
         key = 'q',
