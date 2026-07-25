@@ -63,22 +63,22 @@ local keys = {
     -- resize pane
     {
 	key = 'h',
-	mods = 'LEADER|SHIFT',
+	mods = 'CTRL|SHIFT',
 	action = wezterm.action.AdjustPaneSize { "Left", 5 },
     },
     {
 	key = 'j',
-	mods = 'LEADER|SHIFT',
+	mods = 'CTRL|SHIFT',
 	action = wezterm.action.AdjustPaneSize { "Down", 5 },
     },
     {
 	key = 'k',
-	mods = 'LEADER|SHIFT',
+	mods = 'CTRL|SHIFT',
 	action = wezterm.action.AdjustPaneSize { "Up", 5 },
     },
     {
 	key = 'l',
-	mods = 'LEADER|SHIFT',
+	mods = 'CTRL|SHIFT',
 	action = wezterm.action.AdjustPaneSize { "Right", 5 },
     },
 
