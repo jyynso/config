@@ -36,6 +36,11 @@ config.window_frame = {
     font_size = 9,
 }
 
+config.inactive_pane_hsb = {
+    saturation = 0.7,
+    brightness = 0.5,
+}
+
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.default_domain = 'local'
 config.wsl_domains = wezterm.default_wsl_domains()
