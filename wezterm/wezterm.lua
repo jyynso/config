@@ -38,7 +38,7 @@ config.window_frame = {
 
 config.inactive_pane_hsb = {
     saturation = 0.7,
-    brightness = 0.5,
+    brightness = 0.7,
 }
 
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
