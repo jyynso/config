@@ -6,9 +6,9 @@ config.keys = keymaps.keys
 config.leader = keymaps.leader
 
 config.color_scheme = 'GruvboxDark' 
-config.font_size = 12
-config.initial_cols = 100
-config.initial_rows = 25
+config.font_size = 11
+config.initial_cols = 90
+config.initial_rows = 23
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
@@ -47,11 +47,11 @@ config.wsl_domains = wezterm.default_wsl_domains()
 
 -- powerline status bar, referenced from @alexpls
 wezterm.on('update-status', function(window)
-  local LEFT_ARROW = utf8.char(0xe0b2)
+  local arrow = utf8.char(0xe0b2)
   window:set_right_status(wezterm.format({
     { Foreground = { Color = "#83a598" } },
     { Background = { Color = "none" } },
-    { Text = LEFT_ARROW },
+    { Text = arrow },
 
     { Background = { Color = "#83a598" } },
     { Foreground = { Color = "#282828" } },
