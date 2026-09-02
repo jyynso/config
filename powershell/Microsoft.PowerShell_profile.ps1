@@ -15,7 +15,7 @@ function la {
 }
 
 function komo {
-	komorebic start --whkd 
+	komorebic start --whkd --bar 
 }
 
 function komos {
@@ -23,6 +23,6 @@ function komos {
 }
 
 function komor {
-	komorebic stop; komorebic start --whkd
+	komorebic stop; komorebic start --whkd --bar
 }
 
