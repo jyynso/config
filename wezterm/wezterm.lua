@@ -13,6 +13,7 @@ config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 config.font = wezterm.font({ family = "BlexMono Nerd Font" })
+config.window_close_confirmation = 'NeverPrompt'
 config.front_end = "WebGpu"
 config.window_background_opacity = 0.85
 
