@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-local keymaps  = require("keymaps")
+local keymaps = require("keymaps")
 
 config.keys = keymaps.keys
 config.leader = keymaps.leader
@@ -46,6 +46,44 @@ config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.default_domain = 'local'
 config.wsl_domains = wezterm.default_wsl_domains()
 
+local function get_clean_title(tab)
+  local title = tab.tab_title
+  if title and #title > 0 then
+    return title
+  end
+
+  local pane = tab.active_pane
+  local cwd_uri = pane.current_working_dir
+
+  if cwd_uri then
+    local path = cwd_uri.file_path
+
+    path = path:gsub("[/\\]+$", "")
+
+    local breadcrumb = path:match("([^/\\]+[/\\][^/\\]+)$")
+
+    if breadcrumb then
+      return breadcrumb:gsub("\\", "/")
+    else
+      local single_folder = path:match("([^/\\]+)$")
+      if single_folder then
+        return single_folder
+      end
+    end
+  end
+
+  local process_name = pane.foreground_process_name or ""
+  local clean_process = process_name:gsub("(.*[/\\])(.*)", "%2")
+  return clean_process ~= "" and clean_process or "pwsh"
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local title = get_clean_title(tab)
+  return {
+    { Text = " " .. (tab.tab_index + 1) .. ": " .. title .. " " },
+  }
+end)
+
 -- powerline status bar, referenced from @alexpls
 wezterm.on('update-status', function(window)
   local arrow = utf8.char(0xe0b2)
@@ -59,6 +97,5 @@ wezterm.on('update-status', function(window)
     { Text = " " .. wezterm.hostname() .. " " },
   }))
 end)
-
 
 return config
