@@ -26,3 +26,12 @@ function komor {
 	komorebic stop; komorebic start --whkd --bar
 }
 
+if ($env:TERM_PROGRAM -eq 'WezTerm' -or $env:WEZTERM_PANE) {
+    $parentPrompt = $function:prompt
+    function prompt {
+        $loc = $ExecutionContext.SessionState.Path.CurrentFileSystemLocation.ProviderPath
+        $cleanPath = $loc -replace '\\', '/'
+        Write-Host -NoNewline "$([char]27)]7;file://$cleanPath$([char]27)\"
+        & $parentPrompt
+    }
+}
