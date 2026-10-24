@@ -46,35 +46,54 @@ config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.default_domain = 'local'
 config.wsl_domains = wezterm.default_wsl_domains()
 
+local shells = { pwsh = true, powershell = true, cmd = true }
+
+local function is_shell(title)
+  local name = title:match("([^/\\]+)$") or title
+  name = name:gsub("%.exe$", ""):lower()
+  return shells[name]
+end
+
+local function get_cwd_breadcrumb(pane)
+  local cwd = pane.current_working_dir
+  if not cwd then return nil end
+
+  local path = cwd.file_path:gsub("[/\\]+$", "")
+  local breadcrumb = path:match("([^/\\]+[/\\][^/\\]+)$") or path:match("([^/\\]+)$")
+  return breadcrumb and breadcrumb:gsub("\\", "/")
+end
+
 local function get_clean_title(tab)
-  local title = tab.tab_title
-  if title and #title > 0 then
-    return title
+  if tab.tab_title and #tab.tab_title > 0 then
+    return tab.tab_title
   end
 
   local pane = tab.active_pane
-  local cwd_uri = pane.current_working_dir
-
-  if cwd_uri then
-    local path = cwd_uri.file_path
-
-    path = path:gsub("[/\\]+$", "")
-
-    local breadcrumb = path:match("([^/\\]+[/\\][^/\\]+)$")
-
-    if breadcrumb then
-      return breadcrumb:gsub("\\", "/")
-    else
-      local single_folder = path:match("([^/\\]+)$")
-      if single_folder then
-        return single_folder
-      end
-    end
+  if pane.title ~= "" and not is_shell(pane.title) then
+    return (pane.title:gsub("%.exe$", ""))
   end
 
-  local process_name = pane.foreground_process_name or ""
-  local clean_process = process_name:gsub("(.*[/\\])(.*)", "%2")
-  return clean_process ~= "" and clean_process or "pwsh"
+  return get_cwd_breadcrumb(pane) or "pwsh"
+end
+
+local function get_process_name(pane)
+  local mux_pane = wezterm.mux.get_pane(pane.pane_id)
+  local info = mux_pane and mux_pane:get_foreground_process_info()
+  if not info then return "" end
+
+  local function newest_leaf(node)
+    local newest
+    for _, child in pairs(node.children or {}) do
+      if not newest or child.start_time > newest.start_time then
+        newest = child
+      end
+    end
+    return newest and newest_leaf(newest) or node
+  end
+
+  local name = newest_leaf(info).name or ""
+	wezterm.log_error(name)
+  return (name:gsub("%.exe$", ""))
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
