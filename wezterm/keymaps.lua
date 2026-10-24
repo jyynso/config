@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 local config_leader = {
     key = "a",
@@ -7,97 +8,100 @@ local config_leader = {
 }
 
 local keys = {
+    -- spawn tabs
     {
-        key = 'f',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnTab {
-            DomainName = 'WSL:FedoraLinux-44'
-        },
+        key = "f",
+        mods = "CTRL|SHIFT",
+        action = act.SpawnTab { DomainName = "WSL:FedoraLinux-44" },
     },
     {
-        key = 't',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnTab {
-            DomainName = 'local'
-        },
+        key = "t",
+        mods = "CTRL|SHIFT",
+        action = act.SpawnTab { DomainName = "local" },
     },
 
     -- splits
     {
-        key = 'v',
-        mods = 'LEADER',
-        action = wezterm.action.SplitVertical {
-            domain = "CurrentPaneDomain"
-        },
+        key = "v",
+        mods = "LEADER",
+        action = act.SplitVertical { domain = "CurrentPaneDomain" },
     },
     {
-        key = 'h',
-        mods = 'LEADER',
-        action = wezterm.action.SplitHorizontal {
-            domain = "CurrentPaneDomain"
-        },
+        key = "h",
+        mods = "LEADER",
+        action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
     },
 
-    -- navigation
+    -- pane navigation
     {
-        key = 'h',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Left",
+        key = "h",
+        mods = "ALT",
+        action = act.ActivatePaneDirection "Left",
     },
     {
-        key = 'j',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Down",
+        key = "j",
+        mods = "ALT",
+        action = act.ActivatePaneDirection "Down",
     },
     {
-        key = 'k',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Up",
+        key = "k",
+        mods = "ALT",
+        action = act.ActivatePaneDirection "Up",
     },
     {
-        key = 'l',
-        mods = 'ALT',
-        action = wezterm.action.ActivatePaneDirection "Right",
+        key = "l",
+        mods = "ALT",
+        action = act.ActivatePaneDirection "Right",
+    },
+
+    -- sequential tab switching
+    {
+        key = "h",
+        mods = "ALT|SHIFT",
+        action = act.ActivateTabRelative(-1),
+    },
+    {
+        key = "l",
+        mods = "ALT|SHIFT",
+        action = act.ActivateTabRelative(1),
     },
 
     -- resize pane
     {
-	key = 'h',
-	mods = 'CTRL|SHIFT',
-	action = wezterm.action.AdjustPaneSize { "Left", 5 },
+        key = "h",
+        mods = "CTRL|SHIFT",
+        action = act.AdjustPaneSize { "Left", 5 },
     },
     {
-	key = 'j',
-	mods = 'CTRL|SHIFT',
-	action = wezterm.action.AdjustPaneSize { "Down", 5 },
+        key = "j",
+        mods = "CTRL|SHIFT",
+        action = act.AdjustPaneSize { "Down", 5 },
     },
     {
-	key = 'k',
-	mods = 'CTRL|SHIFT',
-	action = wezterm.action.AdjustPaneSize { "Up", 5 },
+        key = "k",
+        mods = "CTRL|SHIFT",
+        action = act.AdjustPaneSize { "Up", 5 },
     },
     {
-	key = 'l',
-	mods = 'CTRL|SHIFT',
-	action = wezterm.action.AdjustPaneSize { "Right", 5 },
+        key = "l",
+        mods = "CTRL|SHIFT",
+        action = act.AdjustPaneSize { "Right", 5 },
     },
 
-    -- close
+    -- close pane
     {
-        key = 'q',
-        mods = 'ALT',
-        action = wezterm.action.CloseCurrentPane {
-            confirm = false,
-        },
+        key = "q",
+        mods = "ALT",
+        action = act.CloseCurrentPane { confirm = false },
     },
 }
 
--- switch tabs
+-- switch tabs by number (Alt + 1-9)
 for i = 1, 9 do
     table.insert(keys, {
         key = tostring(i),
         mods = "ALT",
-        action = wezterm.action.ActivateTab(i - 1),
+        action = act.ActivateTab(i - 1),
     })
 end
 
